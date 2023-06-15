@@ -25,6 +25,13 @@ mongoose.connect(process.env.MONGODBURL).then(()=>{
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const statisticalRouter = require('./routes/statistical');
+const membervipRouter = require('./routes/membervip');
+const memberRouter = require('./routes/member');
+const autionpostRouter = require('./routes/autionpost');
+const contentRouter = require('./routes/content');
+const reportRouter = require('./routes/report');
+const admanagerRouter = require('./routes/admanager');
 
 const apiUserRouter = require('./api_src/route/user')
 const apiPostRouter = require('./api_src/route/post')
@@ -55,6 +62,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Web Admin
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/',statisticalRouter);
+app.use('/',membervipRouter);
+app.use('/',memberRouter);
+app.use('/',autionpostRouter);
+app.use('/',contentRouter);
+app.use('/',reportRouter);
+app.use('/',admanagerRouter);
+
+
 
 
 
