@@ -13,6 +13,9 @@ router.get('/add_regular_member', function(req, res, next) {
   router.get('/update_regular_member', function(req, res, next) {
     res.render('regular_member/update_regular_member');
   });
+  router.get('/change_password', function(req, res, next) {
+    res.render('regular_member/change_password');
+  });
 
 
 module.exports = router;
