@@ -168,8 +168,111 @@ ShopSchema.pre('save',async function (next) {
     }
 })
 
+const reportSchema = new mongoose.Schema({
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    createAt: {
+        type: Date,
+        default: Date.now
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: Number,
+        default: 0
+    },
+    feedback: {
+        type: String,
+        required: true
+    },
+    attachedFiles: {
+        type: [String],
+        required: false
+    }
+});
+// Schema cho giảm giá
+const discountSchema = new mongoose.Schema({
+    shopId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Shop',
+        required: true
+    },
+    discountCode: {
+        type: String,
+        required: true,
+    },
+    discountValue: {
+        type: Number,
+        required: true
+    },
+    startTime: {
+        type: Date,
+        required: true
+    },
+    endTime: {
+        type: Date,
+        required: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    }
+});
+// Schema cho lịch sử đặt cọc
+const depositHistorySchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    createAt: {
+        type: Date,
+        default: Date.now
+    },
+    depositAmount: {
+        type: Number,
+        required: true
+    },
+    status: {
+        type: Number,
+        default:0
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    paymentMethod: {
+        type: String,
+        required: true
+    },
+});
+const bannerSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    isActive: {
+        type: Boolean,
+        default:true
+    }
+});
 
 
+const Banner = mongoose.model('Banner', bannerSchema);
 const User = mongoose.model('User', UserSchema);
 const Category = mongoose.model('Category', CategorySchema);
 //const Book = mongoose.model('Book', BookSchema);
@@ -181,9 +284,17 @@ const Notification = mongoose.model('Notification', NotificationSchema);
 const Publisher = mongoose.model('Publisher', PublisherSchema);
 const AuctionPost = mongoose.model('AuctionPost', AuctionPostSchema);
 const Bill = mongoose.model('Bill', BillSchema);
+const Report= mongoose.model('Report', reportSchema)
+const Discount = mongoose.model('Discount', discountSchema)
+const DepositHistory = mongoose.model('DepositHistory', depositHistorySchema)
+
 //const Cart = mongoose.model('Cart', cartSchema);
 
 module.exports = {
+    Banner,
+    Report,
+    Discount,
+    DepositHistory,
     User,
     Category,
    // Book,
