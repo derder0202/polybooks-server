@@ -65,7 +65,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Web Admin
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-// app.use('/',statisticalRouter);
+app.use('/account_statistics',statisticalRouter);
 // app.use('/',membervipRouter);
 // app.use('/',memberRouter);
 // app.use('/',autionpostRouter);
